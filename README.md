@@ -1,4 +1,4 @@
-Insight Data Engineering - Coding Challenge
+Twitter - ADS Project
 ===========================================================
 
 # Table of Contents
@@ -99,8 +99,6 @@ In this case, the first tweet that enters the system has a timestamp of `Thu Mar
 Spark <-> Apache
 ```
 
-![spark-apache-graph](images/htag_graph_1.png)
-
 The average degree will be calculated by summing the degrees of both nodes in the graph and dividing by the total number of nodes in the graph.
 
 Average Degree = (1+1) / 2 = 1.00
@@ -124,7 +122,6 @@ The edge list by first two tweets are:
 
 The second tweet contains 3 hashtags `#Apache`, `#Hadoop`, and `#Storm`. `#Apache` already exists in the graph, so only `#Hadoop` and `#Storm` are added to the graph and the graph now is:
 
-![spark-apache-graph](images/htag_graph_2.png)
 
 Average Degree = (1+3+2+2) / 4 = 2.00
 
@@ -156,11 +153,8 @@ The fourth tweet is in order of time and forms new edges. The edges in the graph
 ```
 The fourth tweet contains `#Flink` and `#Spark`. `#Spark` already exists, so only `#Flink` will be added.
 
-![flink-spark-graph](images/htag_graph_3.png)
-
 We can now calculate the degree of each node which is defined as the number of connected neighboring nodes.
 
-![graph-degree3](images/htag_degree_3.png)
 
 Average Degree = (1+2+3+2+2) / 5 = 2.00
 
@@ -199,11 +193,9 @@ The edge list now becomes:
 
 The graph now looks like the following
 
-![hbase-spark-graph](images/htag_graph_4.png)
 
 The updated degree calculation for each node is as follow. Here only `#Spark` needs to be incremented due to the additional `#HBase` node.
 
-![graph-degree4](images/htag_degree_4.png)
 
 The average degree will be recalculated using the same formula as before.
 
@@ -265,11 +257,9 @@ The new edge list only has the `#Spark` <-> `#Apache` edge removed. The edge `#H
 
 The old graph has now been disconnected forming two graphs.
 
-![evicted-spark-apache](images/htag_graph_5.png)
 
 We'll then calculate the new degree for all the nodes in both graphs.
 
-![graph-degree5](images/htag_degree_5.png)
 
 Recalculating the average degree of all nodes in all graphs is as follows
 
@@ -295,7 +285,6 @@ The rolling average degree now becomes
 
 Tweets which are out of order and fall within the 60 sec window of the maximum timestamp processed or in other words, are less than 60 sec older than the maximum timestamp being processed, will create new edges in the graph. However, tweets which are out of order in time and are outside the 60-second window of the maximum timestamp processed (or more than 60 seconds older than the maximum timestamp being processed) should be ignored and such tweets won't contribute to building the graph.  Below is a diagram showing this, with the Nth tweet corresponding to the tweet on the the Nth line of the `tweets.txt` file.
 
-![tweet-out-of-order](images/sliding-window.png)
 
 It's easiest to understand this with an example.  Let's say that a new tweet comes in and the extracted information is
 
@@ -330,7 +319,6 @@ A new edge is added to the graph and the edge list becomes
 ``` 
 The graph can be visualized as
 
-![tweet-out-of-order](images/htag_graph_6.png)
 
 ```
 The average degree is (2+2+2+2+2+2) / 6 = 2.00
@@ -389,7 +377,6 @@ The edge list now becomes
 ```
 The graph is as follows
 
-![new-tweet-in-order](images/htag_graph_7.png)
 
 ```
 The average degree of the graph is (2+2+2+2+1+1) / 6 = 1.66
@@ -426,7 +413,6 @@ You may write your solution in any mainstream programming language such as C, C+
 ## Repo directory structure
 [Back to Table of Contents](README.md#table-of-contents)
 
-![Example Repo Structure](images/directory-pic.png)
 
 Alternatively, here is example output of the `tree` command:
 
